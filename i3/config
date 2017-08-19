@@ -13,7 +13,7 @@ font pango:DejaVu Sans Mono 8
 ###---Variables---###
 set $mod Mod1
 set $term urxvt
-set $browser firefox
+set $browser chromium
 set floating_modifier $mod
 set $inc amixer set Master 3%+
 set $bigint amixer set Master 10%+
