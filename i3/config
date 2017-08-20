@@ -102,16 +102,16 @@ bindsym $mod+Tab		workspace back_and_forth
 
 
 ###Workspace Bindings---###
-set $ws1 "" 
-set $ws2 "" 
+set $ws1 "1" 
+set $ws2 "2" 
 set $ws3 "3" 
 set $ws4 "4" 
 set $ws5 "5" 
 set $ws6 "6" 
 set $ws7 "7" 
 set $ws8 "8" 
-set $ws9 "" 
-set $ws10 ""
+set $ws9 "9" 
+set $ws10 "10"
 
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -148,8 +148,8 @@ bindsym F7			exec --no-startup-id light -A 1%
 #bindsym F8
 #bindsym F9
 #bindsym F10
-#bindsym F11
-#bindsym F12
+bindsym $mod+F11   exec --no-startup-id redshift -O 3000
+bindsym $mod+F12   exec --no-startup-id redshift -x
 
 
 ###---Media key Bindings---###
