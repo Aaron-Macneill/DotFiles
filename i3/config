@@ -5,16 +5,15 @@
 ###---Basic Definitions---###
 #needed for i3-gaps
 hide_edge_borders both
-for_window [class="^.*"] border pixel 0
+for_window [class="^.*"] border pixel 1
 gaps inner 15
 gaps outer 15
-font pango:DejaVu Sans Mono 8
-
+font pango:Fantasque Sans Mono 10
 ###---Variables---###
 set $mod Mod1
 set $term urxvt
 set $browser chromium
-set floating_modifier $mod
+set $floating_modifier $mod
 set $inc amixer set Master 3%+
 set $bigint amixer set Master 10%+
 set $dec amixer set Master 3%-
@@ -22,12 +21,22 @@ set $bigdec amixer set Master 10%-
 ###---Startup---###
 exec --no-startup-id compton -f
 exec --no-startup-id feh --bg-scale ~/.config/i3/wall.jpg
-exec --no-startup-id unclutter
+#exec --no-startup-id unclutter
+exec --no-startup-id clipit
 
 ###---Bar---###
 bar {
-	status_command i3status
+  status_command i3blocks -c ~/.config/i3/i3blocks.conf
 	position top
+  colors {
+    separator #7d7d7d
+    background #141414
+    statusline #00b0ef
+    focused_workspace #00b0ef #141414 #00b0ef
+    active_workspace #141414 #141414 #00b0ef
+    inactive_workspace #141414 #141414 #7d7d7d
+    urgent_workspace #ff7066 #141414 #ff7066
+  }
 }
 
 ###---Audio and Music---###
@@ -157,3 +166,16 @@ bindsym $mod+plus		exec $inc
 bindsym $mod+Shift+Plus		exec $biginc
 bindsym $mod+minus		exec $dec
 bindsym $mod+Shift+minus	exec $bigdec
+
+###---Mouse bindings---###
+bindsym --release button2 kill
+bindsym --whole-window $mod+button2 kill
+bindsym button3 floating toggle
+bindsym $mod+button3 floating toggle
+bindsym button9 move left
+bindsym button8 move right
+
+client.focused #00b0ef #00b0ef #141414 #ff7066
+client.focused_inactive #141414 #141414 #00b0ef #472b2a
+client.unfocused #141414 #141414 #7d7d7d #141414
+client.urgent #ff7066 #ff7066 #141414 #ff7066
