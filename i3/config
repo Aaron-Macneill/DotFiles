@@ -18,9 +18,14 @@ set $inc amixer set Master 3%+
 set $bigint amixer set Master 10%+
 set $dec amixer set Master 3%-
 set $bigdec amixer set Master 10%-
+set_from_resource $fg i3wm.color7 #f0f0f0
+set_from_resource $bg i3wm.color0 #f0f0f0
+
 ###---Startup---###
 exec --no-startup-id compton -f
-exec --no-startup-id feh --bg-scale ~/.config/i3/wall.jpg
+#exec --no-startup-id feh --bg-scale ~/.config/i3/wall.jpg
+exec --no-startup-id wal -c
+exec --no-startup-id wal -i /home/aaron/.config/i3/wall.jpg -a 95
 #exec --no-startup-id unclutter
 exec --no-startup-id clipit
 
@@ -30,9 +35,9 @@ bar {
 	position top
   colors {
     separator #7d7d7d
-    background #141414
-    statusline #00b0ef
-    focused_workspace #00b0ef #141414 #00b0ef
+    background $bg
+    statusline $fg
+    focused_workspace $bg $fg $bg
     active_workspace #141414 #141414 #00b0ef
     inactive_workspace #141414 #141414 #7d7d7d
     urgent_workspace #ff7066 #141414 #ff7066
@@ -81,7 +86,7 @@ bindsym $mod+Shift+o 		resize grow width 10 px or 10 ppt
 bindsym $mod+s			gaps inner current plus 5
 bindsym $mod+Shift+s		gaps inner current minus 5
 
-bindsym $mod+d			exec i3-dmenu-desktop
+#bindsym $mod+d			exec i3-dmenu-desktop
 bindsym $mod+Shift+d		gaps inner current set 0; gaps outer current set 0
 
 bindsym $mod+f			fullscreen toggle
@@ -175,7 +180,26 @@ bindsym $mod+button3 floating toggle
 bindsym button9 move left
 bindsym button8 move right
 
-client.focused #00b0ef #00b0ef #141414 #ff7066
-client.focused_inactive #141414 #141414 #00b0ef #472b2a
-client.unfocused #141414 #141414 #7d7d7d #141414
-client.urgent #ff7066 #ff7066 #141414 #ff7066
+
+#client.focused #00b0ef #00b0ef #141414 #ff7066
+#client.focused_inactive #141414 #141414 #00b0ef #472b2a
+#client.unfocused #141414 #141414 #7d7d7d #141414
+#client.urgent #ff7066 #ff7066 #141414 #ff7066
+
+# Set colors from Xresources
+# Change 'color7' and 'color2' to whatever colors you want i3 to use 
+# from the generated scheme.
+# NOTE: The '#f0f0f0' in the lines below is the color i3 will use if
+# it fails to get colors from Xresources.
+
+# class                 border  backgr. text indicator child_border
+client.focused          $bg     $bg     $fg  $bg       $bg
+client.focused_inactive $bg     $bg     $fg  $bg       $bg
+client.unfocused        $bg     $bg     $fg  $bg       $bg
+client.urgent           $bg     $bg     $fg  $bg       $bg
+client.placeholder      $bg     $bg     $fg  $bg       $bg
+
+client.background       $bg
+
+# PROTIP: You can also dynamically set dmenu's colors this way:
+bindsym $mod+d exec dmenu_run -nb "$fg" -nf "$bg" -sb "$bg" -sf "$fg"
