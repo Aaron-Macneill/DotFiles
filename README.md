@@ -1,1 +1,1 @@
-Aaron Macneill's config
+My config on Void Linux with i3wm
