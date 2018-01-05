@@ -1,0 +1,9 @@
+#!/bin/bash
+###---Created by Aaron Macneill 03-18-08-15---###
+
+EDITOR="nvim"
+DIR=${HOME}/Documents/Thoughts/
+FNAME="$(date +"%m-%d-%y-%H-%M").txt"
+
+touch ${DIR}${FNAME}
+${EDITOR} ${DIR}${FNAME}

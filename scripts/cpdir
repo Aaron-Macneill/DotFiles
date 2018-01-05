@@ -1,0 +1,7 @@
+#!/usr/bin/python3
+
+import clipboard
+import os
+
+wd = os.getcwd()
+clipboard.copy(wd)

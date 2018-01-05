@@ -1,0 +1,147 @@
+##--Variables--##
+set $mod Mod1
+set $term urxvt
+set $browser chromium 
+set $mvsp 30
+set $launcher rofi -show drun
+set $inc amixer set Master 3%+
+set $dec amixer set Master 3%-
+
+##--Startup--##
+exec compton
+exec feh --bg-scale ~/.config/i3/wall.jpg
+exec greenclip daemon
+#exec wal -R
+
+##--Appearance--##
+new_window pixel 1
+new_float pixel 1
+hide_edge_borders none
+gaps inner 10
+gaps outer 10
+font pango:Terminus 12px
+
+set_from_resource	$background	background
+set_from_resource	$foreground	foreground
+set_from_resource	$color0		color0
+set_from_resource 	$color1 	color1
+set_from_resource 	$color2 	color2
+set_from_resource 	$color3 	color3
+set_from_resource 	$color4 	color4
+set_from_resource 	$color5 	color5
+set_from_resource 	$color6		color6
+set_from_resource	$color7		color7
+set_from_resource	$color8		color8
+set_from_resource	$color9		color9
+set_from_resource	$color10	color10
+set_from_resource	$color11	color11
+set_from_resource	$color12	color12
+set_from_resource	$color13	color13
+set_from_resource	$color14	color14
+set_from_resource	$color15	color15
+
+# class                 border  	backgr. 	text    	indic.  	child_border
+client.background	$background
+client.focused         	$foreground	$background	$foreground	$foreground		$foreground	
+client.unfocused       	$foreground	$background	$foreground	$color8		$color8
+client.focused_inactive	$foreground	$background	$foreground	$color8		$color8
+client.urgent		$foreground	$background	$foreground	$color8		$color8
+client.placeholder	$foreground	$background	$foreground	$color8		$color8
+
+
+##--Bar--##
+bar {
+	status_command i3blocks -c ~/.config/i3/i3blocks.conf
+	position top
+	#mode hide
+	modifier $mod
+	colors {
+		background #000000
+		statusline $fg
+		separator $fg
+		##                  border  backgr. text
+		focused_workspace  $foreground	$background	$foreground
+		#active_workspace   $fg $bg $fg
+		#inactive_workspace 
+		#urgent_workspace   $foreground	$background	$color2
+        }
+}
+
+##--Launchers--##
+bindsym $mod+Return	exec $term
+bindsym $mod+w		exec $browser
+bindsym $mod+d		exec $launcher
+bindsym $mod+a		exec i3menu window_actions
+bindsym $mod+s		exec bash ~/.Scripts/snippy.sh
+bindsym $mod+c		exec rofi -modi "clipboard:greenclip print" -show clipboard
+bindsym $mod+F11	exec redshift -O 3000
+bindsym $mod+F12	exec redshift -x
+
+
+##--Setters--##
+bindsym $mod+plus	exec $inc
+bindsym $mod+minus	exec $dec
+
+##--Movement--##
+bindsym $mod+h		focus left
+bindsym $mod+j		focus down
+bindsym $mod+k		focus up
+bindsym $mod+l		focus right
+
+bindsym $mod+Shift+h	move left $mvsp
+bindsym $mod+Shift+j	move down $mvsp
+bindsym $mod+Shift+k	move up $mvsp
+bindsym $mod+Shift+l	move right $mvsp
+
+bindsym $mod+y		resize shrink width 20px or 10ppt
+bindsym $mod+u		resize grow height 20px or 10ppt
+bindsym $mod+i		resize shrink height 20px or 10ppt
+bindsym $mod+o		resize grow width 20px or 10ppt
+
+
+
+##--i3--##
+bindsym $mod+q		kill
+bindsym $mod+t		split toggle
+bindsym $mod+Shift+space	floating toggle
+bindsym $mod+Shift+r	restart
+
+bindsym $mod+Shift+d	gaps outer current set 0; gaps inner current set 0
+bindsym $mod+z		gaps outer current plus 5
+bindsym $mod+Shift+z	gaps outer current minus 5
+bindsym $mod+x		gaps inner current plus 5
+bindsym $mod+Shift+x	gaps inner current minus 5
+
+##--Workspaces--##
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+bindsym $mod+1 workspace $ws1
+bindsym $mod+2 workspace $ws2
+bindsym $mod+3 workspace $ws3
+bindsym $mod+4 workspace $ws4
+bindsym $mod+5 workspace $ws5
+bindsym $mod+6 workspace $ws6
+bindsym $mod+7 workspace $ws7
+bindsym $mod+8 workspace $ws8
+bindsym $mod+9 workspace $ws9
+bindsym $mod+0 workspace $ws10
+
+bindsym $mod+Shift+1 move container to workspace $ws1
+bindsym $mod+Shift+2 move container to workspace $ws2
+bindsym $mod+Shift+3 move container to workspace $ws3
+bindsym $mod+Shift+4 move container to workspace $ws4
+bindsym $mod+Shift+5 move container to workspace $ws5
+bindsym $mod+Shift+6 move container to workspace $ws6
+bindsym $mod+Shift+7 move container to workspace $ws7
+bindsym $mod+Shift+8 move container to workspace $ws8
+bindsym $mod+Shift+9 move container to workspace $ws9
+bindsym $mod+Shift+0 move container to workspace $ws10
